@@ -11,13 +11,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQuery(name = "findUserByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
+@NamedQueries({
+	@NamedQuery(name = "User.findUserByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
+	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+})
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;

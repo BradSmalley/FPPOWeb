@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.fictitiousprofession.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +40,6 @@ public class MembersController {
 	public String members(Model model, HttpServletRequest req, HttpServletResponse resp) {
 		logger.info("MembersController.members()");
 		
-//		model.addAttribute("beans", context.getParent().getBeanDefinitionNames());
-		
-//		Enumeration<String> e = req.getSession().getAttributeNames();
-//		while (e.hasMoreElements()) {
-//			System.out.println(e.nextElement());
-//		}
 		SecurityContext secContext = (SecurityContext) req.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
 		Authentication auth = secContext.getAuthentication();
 		Iterator<? extends GrantedAuthority> iter = auth.getAuthorities().iterator();
@@ -50,6 +49,14 @@ public class MembersController {
 			auths.add(ga.getAuthority());
 		}
 		model.addAttribute("auths", auths);
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("FPPOWebApp");
+		EntityManager em = factory.createEntityManager();
+		
+		TypedQuery<User> query = em.createNamedQuery("User.findUserByUsername", User.class);
+		User user = query.setParameter("username", auth.getName()).getSingleResult();
+		
+		model.addAttribute("user", user);
 		
 		return "member/members";
 	}
