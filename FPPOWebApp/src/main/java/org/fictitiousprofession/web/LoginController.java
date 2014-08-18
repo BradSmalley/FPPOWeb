@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.validation.Valid;
 
 import org.fictitiousprofession.entities.Address;
+import org.fictitiousprofession.entities.AddressType;
 import org.fictitiousprofession.entities.PhoneNumber;
 import org.fictitiousprofession.entities.Role;
 import org.fictitiousprofession.entities.User;
@@ -73,7 +74,7 @@ public class LoginController {
 		
 		Role role = new Role();
 		role.setRole("ROLE_USER");
-		address.setType(1); //TODO:  ???
+		address.setType(AddressType.SHIPPING); //TODO:  ???
 		address.setLine1(form.getAddressLine1());
 		address.setLine2(form.getAddressLine2());
 		address.setCity(form.getCity());
@@ -94,7 +95,7 @@ public class LoginController {
 		phone.setUserId(user.getId());
 		role.setUserId(user.getId());
 		
-		user.getAddesses().add(address);
+		user.getAddresses().add(address);
 		user.getPhoneNumbers().add(phone);
 		user.getRoles().add(role);
 		

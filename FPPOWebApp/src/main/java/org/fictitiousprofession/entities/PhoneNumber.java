@@ -19,7 +19,7 @@ public class PhoneNumber implements Serializable {
 	private Integer id;
 	@Column(name = "user_id", nullable = false)
 	private Integer userId;
-	private Integer type;
+	private PhoneType type;
 	private String number;
 	private String extension;
 	
@@ -33,7 +33,7 @@ public class PhoneNumber implements Serializable {
 	
 	public PhoneNumber(String number) {
 		this.number = number;
-		this.type = 1;
+		this.type = PhoneType.HOME;
 	}
 	
 	public Integer getId() {
@@ -48,11 +48,11 @@ public class PhoneNumber implements Serializable {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	public Integer getType() {
+	public PhoneType getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(PhoneType type) {
 		this.type = type;
 	}
 
@@ -75,6 +75,19 @@ public class PhoneNumber implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public String getFormattedNumber() {
+	
+		String  format = "(%3s) %3s-%4s";
+		if (number != null && number.length() == 10) {
+			if (getExtension() != null && getExtension().length() > 0) {
+				format = format + " x%10s";
+			}
+			return String.format(format, number.substring(0,3), number.substring(3,  6), number.substring(6, 10), (getExtension() == null ? "" : getExtension()));
+		} 
+		return "";
+	
 	}
 	
 }

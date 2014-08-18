@@ -29,7 +29,29 @@
 	</c:if>
 	
 	<h3>Sign In</h3>
-	<form name='f' action='/web/j_spring_security_check' method='POST'>
+	<form name='f' action='/web/j_spring_security_check' method='POST' class="form-horizontal">
+		<div class="form-group">
+			<label for="username" class="col-sm-2 control-label">Username</label>
+			<div class="col-sm-10">
+				<input type="text" name="j_username" class="form-control" placeholder="Username" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="password" class="col-sm-2 control-label">Password</label>
+			<div class="col-sm-10">
+				<input type="password" name="j_password" class="form-control" placeholder="Password" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input name="submit" type="submit" value="Sign In" class="btn btn-default" />
+			</div>
+		</div>
+		<p>Not yet signed up?  <a href="<c:url value="/login/register/" />">Sign Up Here!</a></p>
+	</form>
+	
+
+	<!-- form name='f' action='/web/j_spring_security_check' method='POST'>
 		<table>
 			<tr><td>Username:</td><td><input type='text' name='j_username' value=''></td></tr>
 			<tr><td>Password:</td><td><input type='password' name='j_password'/></td></tr>
@@ -39,7 +61,7 @@
 	</form>
 	<div style="padding-top: 1em;">	
 		<p>Not yet signed up?  <a href="<c:url value="/login/register/" />">Sign Up Here!</a></p>
-	</div>
+	</div -->
 </div>
 
 

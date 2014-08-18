@@ -24,9 +24,81 @@
 		</div>
 	</spring:hasBindErrors>
 	
-	<form:form>
-		<table>
-			<tr><td>Username:</td><td><form:input path="username" type="text" name="username" /></td></tr>
+	<form:form cssClass="form-horizontal" role="form">
+		<div class="form-group">
+			<label for="username" class="col-sm-2 control-label">Username</label>
+			<div class="col-sm-10">
+				<form:input path="username" type="text" name="username" cssClass="form-control" placeholder="Username" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="Password" class="col-sm-2 control-label">Password</label>
+			<div class="col-sm-10">
+				<form:input path="password" type="text" name="password" cssClass="form-control" placeholder="Password" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="retypePassword" class="col-sm-2 control-label">Confirm Password</label>
+			<div class="col-sm-10">
+				<form:input path="retypePassword" type="text" name="retypePassword" cssClass="form-control" placeholder="Confirm Password" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email" class="col-sm-2 control-label">Email</label>
+			<div class="col-sm-10">
+				<form:input path="email" type="text" name="email" cssClass="form-control" placeholder="Email" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="firstname" class="col-sm-2 control-label">First Name</label>
+			<div class="col-sm-10">
+				<form:input path="firstname" type="text" name="firstname" cssClass="form-control" placeholder="First Name" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="lastname" class="col-sm-2 control-label">Last Name</label>
+			<div class="col-sm-10">
+				<form:input path="lastname" type="text" name="lastname" cssClass="form-control" placeholder="Last Name" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="addressLine1" class="col-sm-2 control-label">Address Line 1</label>
+			<div class="col-sm-10">
+				<form:input path="addressLine1" type="text" name="addressLine1" cssClass="form-control" placeholder="Address Line 1" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="addressLine2" class="col-sm-2 control-label">Address Line 2</label>
+			<div class="col-sm-10">
+				<form:input path="addressLine2" type="text" name="addressLine2" cssClass="form-control" placeholder="Address Line 2" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="city" class="col-sm-2 control-label">City</label>
+			<div class="col-sm-10">
+				<form:input path="city" type="text" name="city" cssClass="form-control" placeholder="City" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="state" class="col-sm-2 control-label">State</label>
+			<div class="col-sm-10">
+				<form:input path="state" type="text" name="state" cssClass="form-control" placeholder="State" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="postalCode" class="col-sm-2 control-label">Postal Code</label>
+			<div class="col-sm-10">
+				<form:input path="postalCode" type="text" name="postalCode" cssClass="form-control" placeholder="Postal Code" />
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input name="submit" type="submit" value="Sign Up" class="btn btn-default" />
+			</div>
+		</div>
+		<!-- table>
 			<tr><td>Password:</td><td><form:password path="password" name='password' /></td></tr>
 			<tr><td>Confirm Password:</td><td><form:password path="retypePassword" name='retypePassword' /></td></tr>
 			<tr><td colspan="2">&nbsp;</td></tr>
@@ -40,8 +112,8 @@
 			<tr><td>Postal Code:</td><td><form:input path="postalCode" type='text' name='postalCode' /></td></tr>
 			<tr><td>Phone Number:</td><td><form:input path="phoneNumber" type='text' name='phoneNumber' /></td></tr>
 			<tr><td colspan="2">&nbsp;</td></tr>
-			<tr><td></td><td align="right"><input name="submit" type="submit" value="Sign Up"/></td></tr>
-		</table>
+			<input name="submit" type="submit" value="Sign Up" class="btn btn-default" />
+		</table -->
 	</form:form>
 </div>
 

@@ -20,6 +20,7 @@ public class StartUpBean {
 //		for (String s : context.getBeanDefinitionNames()) {
 //			System.err.println(s);
 //		}	
+		
 	}
 	
 	@PreDestroy

@@ -34,7 +34,7 @@ public class HomeController {
 		
 		User user = em.find(User.class, 1);
 
-		Address address = user.getAddesses().get(0);
+		Address address = user.getAddresses().get(0);
 		model.addAttribute("user", user);
 		model.addAttribute("address", address);
 		

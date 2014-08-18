@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "User.findUserByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
@@ -30,16 +33,24 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Length(min = 1, max = 45, message="Username must be between 1 and 45 characters.")
 	private String username		= "";
 	private String password		= "";
+	
+	@Length(min = 1, max = 45, message="Username must be between 1 and 45 characters.")
+	@Email
 	private String email;
+	
+	@Length(min = 1, max = 45, message="Username must be between 1 and 45 characters.")
 	private String lastname;
+	
+	@Length(min = 1, max = 45, message="Username must be between 1 and 45 characters.")
 	private String firstname;
 	
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "user")
 	private List<Role> roles				= new ArrayList<Role>();
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "user")
-	private List<Address> addesses			= new ArrayList<Address>();
+	private List<Address> addresses			= new ArrayList<Address>();
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "user")
 	private List<PhoneNumber> phoneNumbers	= new ArrayList<PhoneNumber>();
 	
@@ -94,11 +105,11 @@ public class User implements Serializable {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	public List<Address> getAddesses() {
-		return addesses;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
-	public void setAddesses(List<Address> addesses) {
-		this.addesses = addesses;
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 	public List<PhoneNumber> getPhoneNumbers() {
 		return phoneNumbers;

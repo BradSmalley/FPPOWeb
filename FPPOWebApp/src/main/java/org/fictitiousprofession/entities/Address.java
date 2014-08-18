@@ -17,7 +17,7 @@ public class Address implements Serializable {
 	private Integer id;
 	@Column(name = "user_id", nullable = false)
 	private Integer userId;
-	private Integer type;
+	private AddressType type 		= AddressType.SHIPPING;
 	private String line1;
 	private String line2;
 	private String city;
@@ -47,10 +47,10 @@ public class Address implements Serializable {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	public Integer getType() {
+	public AddressType getType() {
 		return type;
 	}
-	public void setType(Integer type) {
+	public void setType(AddressType type) {
 		this.type = type;
 	}
 	public String getLine1() {
