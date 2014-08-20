@@ -2,6 +2,8 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%@ page session="false" %>
 <html>
 <head>
@@ -23,69 +25,124 @@
 <div class="content">
 	
 	<h1>Manage User</h1>
-	<div id="row">
-		<div id="selectedUserInfo" class="col-lg-4 col-md-4">
-			<h4>Basic Information:</h4>
-			<div class="col-lg-12">
-				<div>
-					<label for="username">Username:</label><span class="col-lg-11" draggable="true">${selectedUser.username}</span>
+			<div id="row">
+			<div id="userInfo" class="col-lg-3 col-md-3">
+				<h4>Basic Information:</h4>
+				<div class="row">
+					<div class="col-lg-5 col-md-5"><label for="username">Username:</label></div>
+					<div class="col-lg-7 col-md-7">${fn:escapeXml(selectedUser.username)}</div>
 				</div>
-				<div>
-					<label for="firstname">First Name:</label><span class="col-lg-11">${selectedUser.firstname}</span>
+				<div class="row">
+					<div class="col-lg-5 col-md-5"><label for="firstname">Email:</label></div>
+					<div class="col-lg-7 col-md-7">${fn:escapeXml(selectedUser.email)}</div>
 				</div>
-				<div>
-					<label for="lastname">Last Name:</label><span class="col-lg-11">${selectedUser.lastname}</span>
+				<div class="row">
+					<div class="col-lg-5 col-md-5"><label for="firstname">First Name:</label></div>
+					<div class="col-lg-7 col-md-7">${fn:escapeXml(selectedUser.firstname)}</div>
 				</div>
-				<div>
-					<label for="email">Email:</label><span class="col-lg-11">${selectedUser.email}</span>
+				<div class="row">
+					<div class="col-lg-5 col-md-5"><label for="lastname">Last Name:</label></div>
+					<div class="col-lg-7 col-md-7">${fn:escapeXml(selectedUser.lastname)}</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-5 col-md-5"><label for="registered">Registered:</label></div>
+					<div class="col-lg-7 col-md-7"><fmt:formatDate value="${selectedUser.registrationDate}" dateStyle="SHORT"/></div>
+				</div>
+				<div class="row">
+					<div class="col-lg-5 col-md-5"><label for="paid">Paid:</label></div>
+					<div class="col-lg-7 col-md-7">${fn:escapeXml(selectedUser.paid)}</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-5 col-md-5"><label for="registered">Date Paid:</label></div>
+					<div class="col-lg-7 col-md-7"><fmt:formatDate value="${selectedUser.lastPaymentDate}" dateStyle="SHORT"/></div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 col-md-12" style="margin-top: 1em;">
+						<a href="<c:url value="adminEditBasicInfo?userId=${selectedUser.id}" />">Edit</a>
+					</div>
 				</div>
 			</div>
-			<a href="<c:url value="editBasicInfo" />">Edit</a>
-		</div>
-		<div id="addressInfo" class="col-lg-4 col-md-4">
-			<h4>Address Information:</h4>
-			<div class="col-lg-12">
-				<c:forEach items="${selectedUser.addresses}" var="address">
-					<div>
-						<label for="line1">Line 1:</label><span class="col-lg-11">${fn:escapeXml(address.line1)}</span>
-					</div>
-					<c:if test="${not empty address.line2 }">
-						<div>
-							<label for="line2">Line 2:</label><span class="col-lg-11">${fn:escapeXml(address.line2)}</span>
+			<div id="addressInfo" class="col-lg-3 col-md-3">
+				<h4>Address:</h4>
+				<div class="col-lg-12 col-md-12">
+					<c:forEach items="${selectedUser.addresses}" var="address">
+						<div class="row">
+							<div class="col-lg-12 col-md-12">
+								${fn:escapeXml(address.line1)}
+							</div>	
 						</div>
-					</c:if>
-					<div>
-						<label for="city">City: </label><span class="col-lg-11">${fn:escapeXml(address.city)}</span>
-					</div>
-					<div>
-						<label for="state">State: </label><span class="col-lg-11">${fn:escapeXml(address.state)}</span>
-					</div>
-					<div>
-						<label for="state">Postal Code: </label><span class="col-lg-12">${fn:escapeXml(address.postalCode)}</span>
-					</div>
-					<div><a href="<c:url value="editAddressInfo" />">Edit</a></div>
-				</c:forEach>
+						<c:if test="${not empty address.line2 }">
+							<div class="row">
+								<div class="col-lg-12 col-md-12">
+									${fn:escapeXml(address.line2)}
+								</div>
+							</div>
+						</c:if>
+						<div class="row">
+							<div class="col-lg-12 col-md-12">
+								${fn:escapeXml(address.city)}, ${fn:escapeXml(address.state)} ${fn:escapeXml(address.postalCode)}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-md-12" style="margin-top: 1em;">
+								<a href="<c:url value='adminEditAddressInfo?userId=${selectedUser.id}' />">Edit</a>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
-		</div>
-		<div id="phoneInfo" class="col-lg-4 col-md-4">
-			<h4>Phone Information:</h4>
-			<div class="col-lg-12">
+			<div id="phoneInfo" class="col-lg-3 col-md-3">
+				<h4>Phone:</h4>
 				<c:forEach items="${selectedUser.phoneNumbers}" var="phone">
-					<div>
-						<label for="number">Number: </label><span class="col-lg-12">${fn:escapeXml(phone.formattedNumber)}</span>
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							${fn:escapeXml(phone.formattedNumber)}
+						</div>
 					</div>
 					<c:if test="${not empty phone.extension }">
-						<div>
-							<label for="extension">Extension: </label><span class="col-lg-11">${fn:escapeXml(phone.extension)}</span>
+						<div class="row">
+							<div class="col-lg-4 col-md-4">
+								<label for="extension">Extension: </label>
+							</div>
+							<div class="col-lg-8 col-md-8">
+								${fn:escapeXml(phone.extension)}
+							</div>
 						</div>
 					</c:if>
-					<div class="editLink"><a href="<c:url value="editPhoneInfo" />">Edit</a></div>
+					<div class="row">
+						<div class="col-lg-12 col-md-12" style="margin-top: 1em;">
+							<a href="<c:url value="editPhoneInfo?userId=${selectedUser.id}" />">Edit</a>
+						</div>
+					</div>
 				</c:forEach>
 			</div>
+			<div id="roleInfo" class="col-lg-3 col-md-3">
+				<h4>Role:</h4>
+				<c:forEach items="${selectedUser.roles}" var="role">
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							${fn:escapeXml(role.role)}
+						</div>
+					</div>
+				</c:forEach>
+				<div class="row">
+					<div class="col-lg-12 col-md-12" style="margin-top: 1em;">
+						<a href="<c:url value="editRoleInfo" />">Edit</a>
+					</div>
+				</div>
+			</div>
+			
+		</div><!-- End row -->
+		
+		<div class="row">		
+			<div class="col-lg-12 col-md-12">
+				<a href="<c:url value="listUsers" />" class="btn btn-default col-lg-offset-8 col-md-offset-8">Back to User List</a>
+			</div>
 		</div>
-	</div><!-- End row -->
-	
+		
 </div>
+
+
 
 
 

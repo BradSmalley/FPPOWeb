@@ -28,6 +28,8 @@ public class EditAddressInfoForm implements Serializable {
 	@Pattern(regexp = "^\\d{5}$|^\\d{5}-\\d{4}$|^\\d{9}$", message = "Postal code must be valid (e.g. 12345-3434)")
 	private String postalCode;
 	
+	private Integer userId;
+	
 	public AddressType getAddressType() {
 		return addressType;
 	}
@@ -63,6 +65,12 @@ public class EditAddressInfoForm implements Serializable {
 	}
 	public void setAddressLine2(String addressLine2) {
 		this.addressLine2 = addressLine2;
+	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	
 	

@@ -12,9 +12,10 @@
 
 	<http>
 		<intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
-		<intercept-url pattern="/contact/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/contact**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/members/**" access="ROLE_USER" />
-		<form-login default-target-url="/members/" login-page="/login.jsp" authentication-failure-url="/login.jsp?error=1"/>
+		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+		<form-login default-target-url="/members" login-page="/login.jsp" authentication-failure-url="/login.jsp?error=1"/>
 		<logout logout-url="/logout" />
 	</http>
 	

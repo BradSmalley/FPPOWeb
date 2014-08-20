@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="<c:url value="/resources/js/ie10-viewport-bug-workaround.js" />"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -85,16 +85,12 @@
 		<sitemesh:write property='body'/>
 
     </div><!-- /.container -->
-    
-    
+
 <!-- 	<div class="footer"> -->
 <!-- 		<div class="container"> -->
 <!-- 			<p class="text-muted">&copy; 2014 - Fictitious Professional's Professional Organization - All Rights Reserved.</p> -->
 <!-- 		</div> -->
 <!-- 	</div> -->
-    
- 
-  </body>
+
+</body>
 </html>
-  
- 

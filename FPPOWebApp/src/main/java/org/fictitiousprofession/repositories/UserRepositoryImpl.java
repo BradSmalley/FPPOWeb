@@ -24,9 +24,11 @@ public class UserRepositoryImpl implements UserRepository {
 	
 	@Override
 	public User find(User user) {
+		
 		if (user.getId() == null) {
 			throw new IllegalArgumentException("userId cannot be null");
 		}
+		em.clear();
 		return em.find(User.class, user.getId());
 	}
 	
@@ -61,6 +63,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 	public List<User> findAll() {
 		
+		em.clear();
 		TypedQuery<User> query = em.createNamedQuery("User.findAll", User.class);
 		return query.getResultList();
 		

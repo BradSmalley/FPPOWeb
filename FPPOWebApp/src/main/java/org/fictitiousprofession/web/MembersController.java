@@ -85,7 +85,7 @@ public class MembersController extends AbstractBaseController {
 		userService.save(user);
 		model.addAttribute("user", user);
 		
-		return "redirect:";
+		return "redirect:/members";
 	}
 	
 	// GET address info change form
@@ -131,7 +131,7 @@ public class MembersController extends AbstractBaseController {
 		
 		userService.save(user);
 		model.addAttribute("user", user);
-		return "members/members";
+		return "redirect:/members";
 	}
 	
 	// GET address info change form
@@ -171,7 +171,7 @@ public class MembersController extends AbstractBaseController {
 		userService.save(user);
 		
 		model.addAttribute("user", user);
-		return "members/members";
+		return "redirect:/members";
 		
 	}
 	
