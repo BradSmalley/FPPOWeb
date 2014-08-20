@@ -24,7 +24,7 @@
 		</div>
 	</spring:hasBindErrors>
 	
-	<form:form cssClass="form-horizontal" role="form">
+	<form:form commandName="registrationForm" cssClass="form-horizontal" role="form">
 		<div class="form-group">
 			<label for="username" class="col-sm-2 control-label">Username</label>
 			<div class="col-sm-10">
@@ -34,13 +34,13 @@
 		<div class="form-group">
 			<label for="Password" class="col-sm-2 control-label">Password</label>
 			<div class="col-sm-10">
-				<form:input path="password" type="text" name="password" cssClass="form-control" placeholder="Password" />
+				<form:input path="password" type="password" name="password" cssClass="form-control" placeholder="Password" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="retypePassword" class="col-sm-2 control-label">Confirm Password</label>
+			<label for="retypePassword" class="col-sm-2 control-label">Confirm</label>
 			<div class="col-sm-10">
-				<form:input path="retypePassword" type="text" name="retypePassword" cssClass="form-control" placeholder="Confirm Password" />
+				<form:input path="retypePassword" type="password" name="retypePassword" cssClass="form-control" placeholder="Confirm Password" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -62,13 +62,13 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="addressLine1" class="col-sm-2 control-label">Address Line 1</label>
+			<label for="addressLine1" class="col-sm-2 control-label">Address</label>
 			<div class="col-sm-10">
 				<form:input path="addressLine1" type="text" name="addressLine1" cssClass="form-control" placeholder="Address Line 1" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="addressLine2" class="col-sm-2 control-label">Address Line 2</label>
+			<label for="addressLine2" class="col-sm-2 control-label">Line 2</label>
 			<div class="col-sm-10">
 				<form:input path="addressLine2" type="text" name="addressLine2" cssClass="form-control" placeholder="Address Line 2" />
 			</div>
@@ -91,8 +91,12 @@
 				<form:input path="postalCode" type="text" name="postalCode" cssClass="form-control" placeholder="Postal Code" />
 			</div>
 		</div>
-		
-		
+		<div class="form-group">
+			<label for="phoneNumber" class="col-sm-2 control-label">Phone</label>
+			<div class="col-sm-10">
+				<form:input path="phoneNumber" type="text" name="phoneNumber" cssClass="form-control" placeholder="Phone Number" />
+			</div>
+		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input name="submit" type="submit" value="Sign Up" class="btn btn-default" />

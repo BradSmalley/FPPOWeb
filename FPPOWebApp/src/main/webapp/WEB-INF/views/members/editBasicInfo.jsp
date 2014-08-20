@@ -39,29 +39,30 @@
 		</div>
 	</spring:hasBindErrors>
 
-	<form:form commandName="editBasicInfoForm" action="save" method="POST" cssClass="form-horizontal">
+	<form:form commandName="editBasicInfoForm" method="POST" cssClass="form-horizontal">
 		<div class="form-group">
 			<label for="username" class="col-sm-2 control-label">Username</label>
 			<div class="col-sm-10">
-				<form:input path="username" name="username" cssClass="form-control"/>
+				<p class="form-control-static">${editBasicInfoForm.username}</p>
+				<form:hidden path="username" name="username" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="firstname" class="col-sm-2 control-label">First Name</label>
 			<div class="col-sm-10">
-				<form:input path="firstname" name="firstname" cssClass="form-control"/>
+				<form:input path="firstname" name="firstname" cssClass="form-control" maxlength="45"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="lastname" class="col-sm-2 control-label">Last Name</label>
 			<div class="col-sm-10">
-				<form:input path="lastname" name="lastname" cssClass="form-control"/>
+				<form:input path="lastname" name="lastname" cssClass="form-control" maxlength="45"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="email" class="col-sm-2 control-label">Email</label>
 			<div class="col-sm-10">
-				<form:input path="email" name="email" cssClass="form-control"/>
+				<form:input path="email" name="email" cssClass="form-control" maxlength="100"/>
 			</div>
 		</div>
 	

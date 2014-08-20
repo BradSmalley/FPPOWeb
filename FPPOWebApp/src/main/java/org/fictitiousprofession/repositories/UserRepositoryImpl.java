@@ -1,5 +1,7 @@
 package org.fictitiousprofession.repositories;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,16 +33,22 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public User save(User user) {
 		
-		em.getTransaction().begin();
-		if (em.contains(user)) {
-			em.merge(user);
-		} else {
-			em.persist(user);
-		}
-		em.flush();
-		em.getTransaction().commit();
+		try {
 		
-		return user;
+			em.getTransaction().begin();
+			if (em.contains(user)) {
+				em.merge(user);
+			} else {
+				em.persist(user);
+			}
+			em.flush();
+			em.getTransaction().commit();
+			
+			return user;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			throw new RuntimeException(e);
+		}
 	}
 	
 	@Override
@@ -51,6 +59,12 @@ public class UserRepositoryImpl implements UserRepository {
 		return user;
 	}
 
+	public List<User> findAll() {
+		
+		TypedQuery<User> query = em.createNamedQuery("User.findAll", User.class);
+		return query.getResultList();
+		
+	}
 
 
 

@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("/contact")
 public class ContactController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
 
-	@RequestMapping(value = "/contact/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String contact(Model model) {
 		logger.info("ContactController.contact()");
-		
-
 		
 		return "contact";
 	}

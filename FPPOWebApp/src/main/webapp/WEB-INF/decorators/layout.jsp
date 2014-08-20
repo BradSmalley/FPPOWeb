@@ -17,8 +17,10 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />" type="text/css" media="screen" />
     <!-- link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-theme.min.css" />" type="text/css" media="screen" / -->
     <link rel="stylesheet" href="<c:url value="/resources/css/sticky-footer.css" />" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<c:url value="/resources/css/lavish-bootstrap.css" />" type="text/css" media="screen" />
+    <!-- link rel="stylesheet" href="<c:url value="/resources/css/lavish-bootstrap.css" />" type="text/css" media="screen" / -->
+    <link rel="stylesheet" href="<c:url value="/resources/css/ski_slope.css" />" type="text/css" media="screen" />
     <link rel="stylesheet" href="<c:url value="/resources/css/custom.css" />" type="text/css" media="screen" />
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
@@ -48,18 +50,18 @@
         <div class="navbar-collapse navbar-inverse collapse">
 			<ul class="nav navbar-nav">
 				<li id="navbar-home"><a class="nav-li" href="<c:url value="/" />" >Home</a></li>
-				<li id="navbar-contact"><a class="nav-li" href="<c:url value="/contact/" />" >Contact</a></li>
+				<li id="navbar-contact"><a class="nav-li" href="<c:url value="/contact" />" >Contact</a></li>
 				
 				<security:authorize access="isAuthenticated()">
-					<li id="navbar-members"><a class="nav-li" href="<c:url value="/members/" />">Members</a></li>
+					<li id="navbar-members"><a class="nav-li" href="<c:url value="/members" />">Members</a></li>
 					<security:authorize access="hasRole('ROLE_ADMIN')">
-						<li id="navbar-admin"><a class="nav-li" href="<c:url value="/admin/" />">Admin</a></li>
+						<li id="navbar-admin"><a class="nav-li" href="<c:url value="/admin" />">Admin</a></li>
 					</security:authorize>
 					<li><a class="nav-li" href="<c:url value="/logout" />" class="btn">Sign Out</a></li>
 				</security:authorize>
 				<security:authorize access="isAuthenticated() == false">
 					<li id="navbar-signin"><a class="nav-li" href="<c:url value="/login.jsp" />" class="btn">Sign In</a></li>
-					<li id="navbar-signup"><a class="nav-li" href="<c:url value="/login/register/" />" class="btn">Sign Up</a>
+					<li id="navbar-signup"><a class="nav-li" href="<c:url value="/register" />" class="btn">Sign Up</a>
 				</security:authorize>
 			</ul>
 			<security:authorize access="isAuthenticated()">
@@ -73,6 +75,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
   	<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
+  	<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/custom.js" />"></script>
 

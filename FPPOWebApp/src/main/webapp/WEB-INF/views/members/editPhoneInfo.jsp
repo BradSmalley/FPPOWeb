@@ -39,17 +39,17 @@
 		</div>
 	</spring:hasBindErrors>
 
-	<form:form commandName="editPhoneInfoForm" action="save" method="POST" cssClass="form-horizontal">
+	<form:form commandName="editPhoneInfoForm" method="POST" cssClass="form-horizontal">
 		<div class="form-group">
 			<label for="phoneNumber" class="col-sm-2 control-label">Phone Number</label>
 			<div class="col-sm-10">
-				<form:input path="phoneNumber" name="phoneNumber" cssClass="form-control"/>
+				<form:input path="phoneNumber" name="phoneNumber" cssClass="form-control" maxlength="10"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="extension" class="col-sm-2 control-label">Extension</label>
 			<div class="col-sm-10">
-				<form:input path="extension" name="extension" cssClass="form-control"/>
+				<form:input path="extension" name="extension" cssClass="form-control" maxlength="10"/>
 			</div>
 		</div>
 		<div class="form-group">

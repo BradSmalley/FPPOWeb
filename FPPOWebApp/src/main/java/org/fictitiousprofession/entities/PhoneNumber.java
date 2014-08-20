@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -16,6 +18,7 @@ public class PhoneNumber implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name = "user_id", nullable = false)
 	private Integer userId;
@@ -77,8 +80,12 @@ public class PhoneNumber implements Serializable {
 		this.user = user;
 	}
 	
-	public String getFormattedNumber() {
+	public String toString() {
+		return getFormattedNumberWithExtension();
+	}
 	
+	// Convenience Methods
+	public String getFormattedNumberWithExtension() {
 		String  format = "(%3s) %3s-%4s";
 		if (number != null && number.length() == 10) {
 			if (getExtension() != null && getExtension().length() > 0) {
@@ -87,7 +94,11 @@ public class PhoneNumber implements Serializable {
 			return String.format(format, number.substring(0,3), number.substring(3,  6), number.substring(6, 10), (getExtension() == null ? "" : getExtension()));
 		} 
 		return "";
+	}
 	
+	public String getFormattedNumber() {
+		String  format = "(%3s) %3s-%4s";
+		return String.format(format, number.substring(0,3), number.substring(3,  6), number.substring(6, 10));
 	}
 	
 }

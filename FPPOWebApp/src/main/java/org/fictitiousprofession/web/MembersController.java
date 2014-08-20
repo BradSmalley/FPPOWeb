@@ -1,7 +1,8 @@
 package org.fictitiousprofession.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
+
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.fictitiousprofession.entities.Address;
@@ -16,84 +17,65 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles requests for the application member pages.
  */
 @Controller
+@RequestMapping("/members")
 public class MembersController extends AbstractBaseController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MembersController.class);
 	@Autowired private ApplicationContext context;
 
-	@RequestMapping(value = "/members", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	@Secured(value = "ROLE_USER")
-	public String members(Model model, HttpServletRequest req, HttpServletResponse resp) {
+	public String members(Model model, HttpSession session, Principal principal) {
 		logger.info("MembersController.members()");
 		
-		System.out.println(model.getClass().getCanonicalName());
-		
-		SecurityContext secContext = (SecurityContext) req.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
-		Authentication auth = secContext.getAuthentication();
-		
-		User user = userService.findUserByUsername(auth.getName());
-		req.getSession().setAttribute("user", user);
+		User user = userService.findUserByUsername(principal.getName());
+		session.setAttribute("user", user);
 		model.addAttribute("user", user);
 		
 		return "members/members";
 	}
 	
 	// GET basic info change form
-	@RequestMapping(value = "/members/editBasicInfo/{memberId}/", method = RequestMethod.GET)
+	@RequestMapping(value = "editBasicInfo", method = RequestMethod.GET)
 	@Secured(value = "ROLE_USER")
-	public ModelAndView editBasicInfoGet(@PathVariable("memberId") String memberId, HttpServletRequest req) {
+	public EditBasicInfoForm editBasicInfoGet(HttpSession session) {
 		logger.info("MembersController.editBasicInfoGet()");
 		
-		User user = userService.findUserById(Integer.valueOf(memberId));
-		System.out.println(user.getId());
+		User user = (User) session.getAttribute("user");
 		
-		req.getSession().setAttribute("user", user);
 		EditBasicInfoForm form = new EditBasicInfoForm();
 		form.setUsername(user.getUsername());
 		form.setFirstname(user.getFirstname());
 		form.setLastname(user.getLastname());
 		form.setEmail(user.getEmail());
 		
-		return new ModelAndView("members/editBasicInfo", "editBasicInfoForm", form);
+		return form;
 	}
 	
 	// POST changed basic info form
-	@RequestMapping(value = "/members/editBasicInfo/{memberId}/save", method = RequestMethod.POST)
+	@RequestMapping(value = "editBasicInfo", method = RequestMethod.POST)
 	@Secured(value = "ROLE_USER")
-	public ModelAndView saveBasicInfoPost(
-			Model model,
-			HttpServletRequest req,
-			@PathVariable("memberId") String memberId,
-			@Valid @ModelAttribute("editBasicInfoForm") EditBasicInfoForm form, 
-			BindingResult result) {
+	public String editBasicInfoPost(Model model, HttpSession session,
+			@Valid @ModelAttribute("editBasicInfoForm") EditBasicInfoForm form, BindingResult result) {
 		
-		logger.info("MembersController.saveBasicInfoPost()");
+		logger.info("MembersController.editBasicInfoPost()");
 		
 		if (result.hasErrors()) {
-			System.err.println(String.format("Errors Detected: %s", result.getErrorCount()));
-			for (ObjectError e : result.getAllErrors()) {
-				System.err.println(e.getDefaultMessage());	
-			}
-			return new ModelAndView("members/editBasicInfo", "editBasicInfoForm", form);
+			return "members/editBasicInfo";
 		}
 		
-		User user = (User) req.getSession().getAttribute("user");
+		User user = (User) session.getAttribute("user");
 		
 		user.setFirstname(form.getFirstname());
 		user.setLastname(form.getLastname());
@@ -101,19 +83,18 @@ public class MembersController extends AbstractBaseController {
 		user.setUsername(form.getUsername());
 		
 		userService.save(user);
-		
 		model.addAttribute("user", user);
-		return new ModelAndView("members/members", "command", model);
 		
+		return "redirect:";
 	}
 	
 	// GET address info change form
-	@RequestMapping(value = "/members/editAddressInfo/{addressId}/", method = RequestMethod.GET)
+	@RequestMapping(value = "editAddressInfo", method = RequestMethod.GET)
 	@Secured(value = "ROLE_USER")
-	public ModelAndView editAddressInfoGet(@PathVariable("addressId") String addressId, HttpServletRequest req) {
+	public EditAddressInfoForm editAddressInfoGet(HttpSession session) {
 		logger.info("MembersController.editAddressInfoGet()");
 		
-		User user = (User) req.getSession().getAttribute("user");
+		User user = (User) session.getAttribute("user");
 
 		Address addr = user.getAddresses().get(0);
 		
@@ -125,31 +106,22 @@ public class MembersController extends AbstractBaseController {
 		form.setAddressType(addr.getType());
 		form.setState(addr.getState());
 		
-		return new ModelAndView("members/editAddressInfo", "editAddressInfoForm", form);
+		return form;
 	}
 	
 	// POST changed form
-	@RequestMapping(value = "/members/editAddressInfo/{addressId}/save", method = RequestMethod.POST)
+	@RequestMapping(value = "editAddressInfo", method = RequestMethod.POST)
 	@Secured(value = "ROLE_USER")
-	public ModelAndView saveAddressInfoPost(
-			Model model,
-			HttpServletRequest req,
-			@PathVariable("addressId") String addressId,
-			@Valid @ModelAttribute("editAddressInfoForm") EditAddressInfoForm form, 
-			BindingResult result) {
+	public String editAddressInfoPost(Model model, HttpSession session,
+			@Valid @ModelAttribute("editAddressInfoForm") EditAddressInfoForm form, BindingResult result) {
 		
-		logger.info("MembersController.saveAddressInfoPost()");
+		logger.info("MembersController.editAddressInfoPost()");
 		
 		if (result.hasErrors()) {
-			System.err.println(String.format("Errors Detected: %s", result.getErrorCount()));
-			for (ObjectError e : result.getAllErrors()) {
-				System.err.println(e.getDefaultMessage());	
-			}
-			return new ModelAndView("members/editAddressInfo", "editAddressInfoForm", form);
+			return "members/editAddressInfo";
 		}
 		
-		User user = (User) req.getSession().getAttribute("user");
-		
+		User user = (User) session.getAttribute("user");
 		Address addr = user.getAddresses().get(0);
 		addr.setLine1(form.getAddressLine1());
 		addr.setLine2(form.getAddressLine2());
@@ -158,52 +130,40 @@ public class MembersController extends AbstractBaseController {
 		addr.setPostalCode(form.getPostalCode());
 		
 		userService.save(user);
-		
 		model.addAttribute("user", user);
-		return new ModelAndView("members/members", "command", model);
-		
+		return "members/members";
 	}
 	
 	// GET address info change form
-	@RequestMapping(value = "/members/editPhoneInfo/{phoneId}/", method = RequestMethod.GET)
+	@RequestMapping(value = "editPhoneInfo", method = RequestMethod.GET)
 	@Secured(value = "ROLE_USER")
-	public ModelAndView editPhoneInfoGet(@PathVariable("phoneId") String phoneId, HttpServletRequest req) {
+	public EditPhoneInfoForm editPhoneInfoGet(HttpSession session) {
 		logger.info("MembersController.editPhoneInfoGet()");
 		
-		User user = (User) req.getSession().getAttribute("user");
+		User user = (User) session.getAttribute("user");
 
 		PhoneNumber phone = user.getPhoneNumbers().get(0);
-		
 		EditPhoneInfoForm form = new EditPhoneInfoForm();
 		form.setPhoneNumber(phone.getNumber());
 		form.setType(PhoneType.HOME);
 		form.setExtension(phone.getExtension());
 		
-		return new ModelAndView("members/editPhoneInfo", "editPhoneInfoForm", form);
+		return form;
 	}
 	
 	// POST changed form
-	@RequestMapping(value = "/members/editPhoneInfo/{phoneId}/save", method = RequestMethod.POST)
+	@RequestMapping(value = "editPhoneInfo", method = RequestMethod.POST)
 	@Secured(value = "ROLE_USER")
-	public ModelAndView savePhoneInfoPost(
-			Model model,
-			HttpServletRequest req,
-			@PathVariable("phoneId") String phoneId,
-			@Valid @ModelAttribute("editPhoneInfoForm") EditPhoneInfoForm form, 
-			BindingResult result) {
+	public String editPhoneInfoPost(Model model, HttpSession session,
+			@Valid @ModelAttribute("editPhoneInfoForm") EditPhoneInfoForm form, BindingResult result) {
 		
-		logger.info("MembersController.savePhoneInfoPost()");
+		logger.info("MembersController.editPhoneInfoPost()");
 		
 		if (result.hasErrors()) {
-			System.err.println(String.format("Errors Detected: %s", result.getErrorCount()));
-			for (ObjectError e : result.getAllErrors()) {
-				System.err.println(e.getDefaultMessage());	
-			}
-			return new ModelAndView("members/editPhoneInfo", "editPhoneInfoForm", form);
+			return "members/editPhoneInfo";
 		}
 		
-		User user = (User) req.getSession().getAttribute("user");
-		
+		User user = (User) session.getAttribute("user");
 		PhoneNumber phone = user.getPhoneNumbers().get(0);
 		phone.setExtension(form.getExtension());
 		phone.setNumber(form.getPhoneNumber());
@@ -211,7 +171,7 @@ public class MembersController extends AbstractBaseController {
 		userService.save(user);
 		
 		model.addAttribute("user", user);
-		return new ModelAndView("/members/members", "command", model);
+		return "members/members";
 		
 	}
 	

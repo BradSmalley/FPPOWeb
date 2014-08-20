@@ -12,13 +12,13 @@ public class EditBasicInfoForm implements Serializable {
 	@Length(min = 1, max = 45, message="Username must be between 1 and 45 characters.")
 	private String username			= "";
 	
-	@Length(min = 1, max = 45, message="Username must be between 1 and 45 characters.")
+	@Length(min = 1, max = 45, message="First Name must be between 1 and 45 characters.")
 	private String firstname		= "";
 	
-	@Length(min = 1, max = 45, message="Username must be between 1 and 45 characters.")
+	@Length(min = 1, max = 45, message="Last Name must be between 1 and 45 characters.")
 	private String lastname			= "";
 	
-	@Length(min = 1, max = 45, message="Username must be between 1 and 45 characters.")
+	@Length(min = 1, max = 45, message="Email must be between 6 and 45 characters.")
 	@Email
 	private String email			= "";
 	
