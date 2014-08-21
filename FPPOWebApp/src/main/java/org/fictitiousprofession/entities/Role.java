@@ -27,6 +27,15 @@ public class Role implements Serializable {
 	@PrimaryKeyJoinColumn(name="user_id")
 	private User user;
 	
+	public Role() {
+		
+	}
+	
+	public Role(String roleName, Integer userId) {
+		this.role = roleName;
+		this.userId = userId;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

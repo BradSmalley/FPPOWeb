@@ -25,6 +25,7 @@
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Email</th>
+				<th>Admin</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,11 +35,12 @@
 					<td>${user.firstname}</td>
 					<td>${user.lastname}</td>
 					<td>${user.email}</td>
+					<td>${user.adminRole}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	
+	<input type="button" class="btn btn-cancel" value="Cancel" onclick="window.location('<c:url value="/admin"/>');"/>
 </div>
 
 <script type="text/javascript">

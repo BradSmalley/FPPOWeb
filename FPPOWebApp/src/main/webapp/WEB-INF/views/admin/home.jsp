@@ -24,8 +24,8 @@
 	<h1>Admin Home</h1>
 	
 	<ul>
-		<li><a href="<c:url value="admin/listUsers" />">List Users</a></li>
-		<li><a href="<c:url value="admin/sendMassMail" />">Mass Mail</a></li>
+		<li><h3><a href="<c:url value="admin/listUsers" />">List and Manage Users</a></h3></li>
+		<li><h3><a href="<c:url value="/mail/createMailing" />">Create a Mailing</a></h3></li>
 	</ul>
 </div>
 

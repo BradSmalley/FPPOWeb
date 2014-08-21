@@ -9,7 +9,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Members: Edit Address Information</title>
+	<title>Edit Address Information</title>
 </head>
 <body>
 

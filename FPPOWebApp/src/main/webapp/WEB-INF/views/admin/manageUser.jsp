@@ -111,7 +111,7 @@
 					</c:if>
 					<div class="row">
 						<div class="col-lg-12 col-md-12" style="margin-top: 1em;">
-							<a href="<c:url value="editPhoneInfo?userId=${selectedUser.id}" />">Edit</a>
+							<a href="<c:url value="adminEditPhoneInfo?userId=${selectedUser.id}" />">Edit</a>
 						</div>
 					</div>
 				</c:forEach>
@@ -127,7 +127,7 @@
 				</c:forEach>
 				<div class="row">
 					<div class="col-lg-12 col-md-12" style="margin-top: 1em;">
-						<a href="<c:url value="editRoleInfo" />">Edit</a>
+						<a href="<c:url value="adminEditRoleInfo?userId=${selectedUser.id}" />">Edit</a>
 					</div>
 				</div>
 			</div>

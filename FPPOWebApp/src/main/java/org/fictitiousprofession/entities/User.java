@@ -135,4 +135,13 @@ public class User implements Serializable {
 	public void setPaid(Boolean paid) {
 		this.paid = paid;
 	}
+	
+	public boolean isAdminRole() {
+		for (Role r : getRoles()) {
+			if (r.getRole().equalsIgnoreCase("ROLE_ADMIN")) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

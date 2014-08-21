@@ -20,6 +20,8 @@ public class EditPhoneInfoForm implements Serializable {
 	@Pattern(regexp = "\\d{0,10}", message = "Extension must be between 0 and 10 digits.")
 	private String extension;
 	
+	private int userId;
+	
 	public PhoneType getType() {
 		return type;
 	}
@@ -37,6 +39,12 @@ public class EditPhoneInfoForm implements Serializable {
 	}
 	public void setExtension(String extension) {
 		this.extension = extension;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 }

@@ -10,7 +10,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Members: Edit Basic Information</title>
+	<title>Edit Basic Information</title>
 	
 	<script type="text/javascript">
 		$( document ).ready(function() {
