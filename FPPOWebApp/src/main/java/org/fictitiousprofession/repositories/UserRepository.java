@@ -11,4 +11,7 @@ public interface UserRepository {
 	User findUserByUsername(String username);
 	List<User> findAll();
 	
+	List<User> findPaid();
+	List<User> findNonPaid();
+	
 }

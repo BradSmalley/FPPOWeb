@@ -23,7 +23,9 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "User.findUserByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
-	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+	@NamedQuery(name = "User.findPaid", query = "SELECT u FROM User u WHERE u.paid = true"),
+	@NamedQuery(name = "User.findNonPaid", query = "SELECT u FROM User u WHERE u.paid = false")
 })
 public class User implements Serializable {
 

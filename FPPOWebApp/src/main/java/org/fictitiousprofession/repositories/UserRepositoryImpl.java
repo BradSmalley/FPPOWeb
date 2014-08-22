@@ -70,6 +70,22 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 
+	@Override
+	public List<User> findPaid() {
+		em.clear();
+		TypedQuery<User> query = em.createNamedQuery("User.findPaid", User.class);
+		return query.getResultList();
+	}
+
+
+	@Override
+	public List<User> findNonPaid() {
+		em.clear();
+		TypedQuery<User> query = em.createNamedQuery("User.findNonPaid", User.class);
+		return query.getResultList();
+	}
+
+
 
 
 }
