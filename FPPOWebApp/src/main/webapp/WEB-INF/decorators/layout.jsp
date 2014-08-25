@@ -75,8 +75,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
   	<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
-  	<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+  	<script type="text/javascript" src="<c:url value="/resources/js/jquery.dataTables.min.js" />" ></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js" />"></script> 
     <script type="text/javascript" src="<c:url value="/resources/js/custom.js" />"></script>
 
 

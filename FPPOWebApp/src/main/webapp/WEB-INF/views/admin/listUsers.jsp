@@ -40,7 +40,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<input type="button" class="btn btn-cancel" value="Cancel" onclick="window.location('<c:url value="/admin"/>');"/>
+	<input type="button" class="btn btn-cancel" value="Cancel" onclick="window.location = '<c:url value="/admin"/>';"/>
 </div>
 
 <script type="text/javascript">

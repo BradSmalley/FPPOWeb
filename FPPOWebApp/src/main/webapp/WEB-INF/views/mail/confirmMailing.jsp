@@ -43,7 +43,7 @@
 	</table>
 	
 	
-	<input type="button" class="btn btn-cancel" value="Done" onclick="window.location('<c:url value="/admin"/>');"/>
+	<input type="button" class="btn btn-cancel" value="Done" onclick="window.location ='<c:url value="/admin"/>';"/>
 	
 </div>
 	<script>
