@@ -20,7 +20,7 @@
 	</c:if>
 	
 	<h3>Sign In</h3>
-	<form name='f' action='/web/j_spring_security_check' method='POST' class="form-horizontal">
+	<form name='f' action='<c:url value="/j_spring_security_check" />' method='POST' class="form-horizontal">
 		<div class="form-group">
 			<label for="username" class="col-sm-2 control-label">Username</label>
 			<div class="col-sm-10">

@@ -40,7 +40,7 @@
 
 	<form:form commandName="createMailingForm" method="POST" cssClass="form-horizontal">
 		<div class="form-group">
-			<label for="subject" class="col-sm-2 col-md-2 col-lg-10 control-label">Subject</label>
+			<label for="subject" class="col-sm-2 col-md-2 col-lg-2 control-label">Subject</label>
 			<div class="col-sm-10 col-md-10 col-lg-10">
 				<form:input path="subject" name="subject" />
 			</div>
@@ -76,7 +76,6 @@
 	</form:form>
 
 </div>
-
 
 </body>
 </html>

@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "phone")
+@Table(name = "PHONE")
 public class PhoneNumber implements Serializable {
 
 	private static final long serialVersionUID = 1L;

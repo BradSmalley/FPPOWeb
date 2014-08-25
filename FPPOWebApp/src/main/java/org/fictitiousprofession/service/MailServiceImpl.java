@@ -17,7 +17,7 @@ public class MailServiceImpl implements MailService {
 	@Autowired private UserRepository userRepository;
 	
 	@Override
-	public void sendMail(String subject, String message, boolean paid,boolean nonPaid) {
+	public List<User> sendMail(String subject, String message, boolean paid,boolean nonPaid) {
 
 		List<User> users = new ArrayList<User>();
 		if (paid && nonPaid) {
@@ -31,6 +31,7 @@ public class MailServiceImpl implements MailService {
 		MailThread mt = new MailThread(users, subject, message);
 		new Thread(mt).start();
 		
+		return users;
 		
 	}
 	
