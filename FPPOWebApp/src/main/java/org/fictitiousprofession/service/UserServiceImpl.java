@@ -59,13 +59,13 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(encoder.encode(form.getPassword()));
 		user.setRegistrationDate(new Date());
 		user.setUsername(form.getUsername());	
-		user.setPaid(false); //TODO:  ??
+		user.setPaid(false);
 
 		userRepository.save(user);
 		
 		Address address = new Address();
 		address.setUserId(user.getId());
-		address.setType(AddressType.SHIPPING); //TODO:  ???
+		address.setType(AddressType.SHIPPING); 
 		address.setLine1(form.getAddressLine1());
 		address.setLine2(form.getAddressLine2());
 		address.setCity(form.getCity());

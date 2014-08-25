@@ -20,7 +20,7 @@
     <!-- link rel="stylesheet" href="<c:url value="/resources/css/lavish-bootstrap.css" />" type="text/css" media="screen" / -->
     <link rel="stylesheet" href="<c:url value="/resources/css/ski_slope.css" />" type="text/css" media="screen" />
     <link rel="stylesheet" href="<c:url value="/resources/css/custom.css" />" type="text/css" media="screen" />
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/jquery.dataTables.min.css"/>" type="text/css" media="screen" />
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="<c:url value="/resources/js/ie10-viewport-bug-workaround.js" />"></script>

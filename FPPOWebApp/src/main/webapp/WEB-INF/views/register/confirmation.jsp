@@ -20,7 +20,7 @@
 <div class="content">
 	<h3>Registration Confirmed</h3>
 
-	<form:form action="/web/login.jsp" cssClass="form-horizontal" role="form">
+	<form:form action="<c:url value="/login.jsp" />" cssClass="form-horizontal" role="form">
 		<div class="form-group">
 			<label for="username" class="col-sm-2 control-label">Username</label>
 			<div class="col-sm-10">
