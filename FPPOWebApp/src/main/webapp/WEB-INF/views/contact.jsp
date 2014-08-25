@@ -31,9 +31,9 @@
 		<h3>Phone:</h3>
 		<div>
 			<address>
-				General: <phone>(217) 555-1212</phone><br />
-				Fax: <phone>(217) 555-1213</phone><br />
-				Marketing: <phone>(217) 555-1214</phone><br />
+				General: <a href="tel:2175551212">(217) 555-1212</a><br />
+				Fax: <a href="tel:2175551213">(217) 555-1213</a><br />
+				Marketing: <a href="tel:2175551214">(217) 555-1214</a><br />
 			</address>
 		</div>
 	</div>

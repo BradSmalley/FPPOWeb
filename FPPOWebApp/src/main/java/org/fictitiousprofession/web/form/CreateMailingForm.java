@@ -3,7 +3,6 @@ package org.fictitiousprofession.web.form;
 import java.io.Serializable;
 
 import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
